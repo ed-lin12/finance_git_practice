@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Finance Git Practice"
+description = "A fictional expense tracker and guided Git practice lab for learning commits, branches, push, pull, and pull requests safely."
+version = "1.0.0"
+id = "artifacts/finance-git-practice"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18832
+
+[services.development]
+run = "pnpm --filter @workspace/finance-git-practice run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/finance-git-practice", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/finance-git-practice/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18832"
+BASE_PATH = "/"

@@ -1,6 +1,6 @@
-# [Project name]
+# Finance Git Practice
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A synthetic expense tracker and hands-on Git learning project. See README.md and docs/GIT_PRACTICE.md.
 
 ## Run & Operate
 
@@ -26,7 +26,9 @@ _Populate as you build — short repo map plus pointers to the source-of-truth f
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Keep the learning app browser-only: no banking connections or real financial data.
+- GitHub operations belong in the Git pane or Shell, never simulated as verified in the app.
+- Browser expense edits are separate from source-file changes; Git exercises edit practice/expense-policy.md.
 
 ## Product
 
