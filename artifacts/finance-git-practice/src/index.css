@@ -41,8 +41,8 @@
 }
 
 :root {
-  --background: 210 40% 98%;
-  --foreground: 222 47% 11%;
+  --background: 40 29% 95%;
+  --foreground: 205 26% 15%;
   
   --card: 0 0% 100%;
   --card-foreground: 222 47% 11%;
@@ -52,8 +52,8 @@
   --popover-foreground: 222 47% 11%;
   --popover-border: 214.3 31.8% 91.4%;
   
-  --primary: 160 84% 20%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 204 35% 19%;
+  --primary-foreground: 40 33% 98%;
   
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 222.2 47.4% 11.2%;
@@ -80,5 +80,17 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    font-family: "Trebuchet MS", ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .desk-input {
+    @apply w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition;
+    border-color: #ded6ca;
+  }
+  .desk-input:focus {
+    border-color: #d87935;
+    box-shadow: 0 0 0 4px #f9dfb7;
   }
 }

@@ -1,7 +1,6 @@
-import { CheckCircle2, Circle, ArrowRight, ExternalLink } from 'lucide-react'
+import { CheckCircle2, Circle, ExternalLink } from 'lucide-react'
 import { useProgress } from '@/lib/store'
 import { Card, CardContent } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
 import { cn } from '@/lib/utils'
 
 const LESSONS = [
@@ -117,31 +116,32 @@ export default function GuidePage() {
   const progressPercent = Math.round((completedCount / LESSONS.length) * 100)
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto">
-      <div className="text-center space-y-3">
-        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">Git Practice Guide</h1>
-        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+    <div className="mx-auto w-full max-w-4xl space-y-8 p-5 animate-in fade-in slide-in-from-bottom-4 duration-500 lg:p-10">
+      <div className="space-y-3 border-b border-[#e8e0d5] pb-7 text-center">
+        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#a16642]">Hands-on learning path</p>
+        <h1 className="text-4xl font-black tracking-tight text-[#1c2730]">Git Practice Guide</h1>
+        <p className="mx-auto max-w-2xl text-lg text-[#716a62]">
           A self-paced, zero-risk environment for finance professionals to learn version control.
         </p>
       </div>
 
-      <Card className="bg-primary/5 border-primary/20 overflow-hidden">
+      <Card className="overflow-hidden rounded-[22px] border-[#ddd5c9] bg-[#fff8e9] shadow-none">
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 flex-1">
-              <h3 className="font-semibold text-lg text-slate-900">Your Progress</h3>
-              <p className="text-sm text-slate-600">
+              <h3 className="text-lg font-black text-[#1c2730]">Your progress</h3>
+              <p className="text-sm text-[#716a62]">
                 Check off lessons as you complete them. This progress is saved locally to your browser.
               </p>
             </div>
             <div className="w-full md:w-64 space-y-2 shrink-0">
               <div className="flex justify-between text-sm font-medium">
-                <span className="text-primary">{progressPercent}%</span>
-                <span className="text-slate-500">{completedCount} of {LESSONS.length}</span>
+                <span className="text-[#157467]">{progressPercent}%</span>
+                <span className="text-[#837b71]">{completedCount} of {LESSONS.length}</span>
               </div>
-              <div className="h-2.5 w-full bg-slate-200 rounded-full overflow-hidden">
+              <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#e4ddd2]">
                 <div 
-                  className="h-full bg-primary transition-all duration-700 ease-in-out"
+                    className="h-full bg-[#1b9c8d] transition-all duration-700 ease-in-out"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
@@ -159,10 +159,10 @@ export default function GuidePage() {
             <Card 
               key={lesson.id} 
               className={cn(
-                "transition-all duration-300 border-l-4",
-                isCompleted ? "border-l-primary bg-slate-50/50" : 
-                isNext ? "border-l-blue-500 shadow-md ring-1 ring-blue-500/20" : 
-                "border-l-slate-200 opacity-80"
+                "overflow-hidden rounded-[20px] border-[#e4ddd2] border-l-4 bg-white shadow-none transition-all duration-300",
+                isCompleted ? "border-l-[#1b9c8d] bg-[#f4faf7]" :
+                isNext ? "border-l-[#d87935] shadow-[0_8px_20px_rgba(177,107,49,0.09)] ring-1 ring-[#d87935]/20" :
+                "border-l-[#d8cfc2] opacity-80"
               )}
             >
               <CardContent className="p-0">
@@ -200,7 +200,7 @@ export default function GuidePage() {
                       "transition-all duration-300 overflow-hidden",
                       isCompleted ? "opacity-50 h-0" : "opacity-100"
                     )}>
-                      <div className="bg-slate-50 rounded-lg p-4 border border-slate-100 mt-2">
+                          <div className="mt-2 rounded-xl border border-[#e8e0d5] bg-[#f9f6ef] p-4">
                         {lesson.content}
                       </div>
                     </div>
@@ -214,7 +214,7 @@ export default function GuidePage() {
 
       <div className="text-center pb-12 pt-4">
         {completedCount === LESSONS.length && (
-          <div className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold shadow-lg animate-in zoom-in duration-500">
+          <div className="inline-block rounded-full bg-[#1f3040] px-6 py-3 font-bold text-white shadow-lg animate-in zoom-in duration-500">
             🎉 Congratulations! You have completed all Git practice lessons.
           </div>
         )}

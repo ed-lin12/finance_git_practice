@@ -1,64 +1,42 @@
 import * as React from "react"
 import { Link, useLocation } from "wouter"
-import { BookOpen, DollarSign, Wallet } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { BookOpen, CircleDollarSign, Layers3, ShieldCheck, Sparkles } from "lucide-react"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation()
 
-  const navItems = [
-    { href: "/", label: "Expense Tracker", icon: DollarSign },
-    { href: "/guide", label: "Git Practice Guide", icon: BookOpen },
-  ]
-
   return (
-    <div className="min-h-[100dvh] flex flex-col md:flex-row bg-slate-50">
-      <aside className="w-full md:w-64 bg-slate-900 text-slate-100 flex-shrink-0 flex flex-col">
-        <div className="p-6 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground shadow-md">
-            <Wallet className="w-5 h-5" />
+    <div className="min-h-[100dvh] overflow-x-hidden bg-[#f6f3ed] p-0 text-[#1c2730] sm:p-3 lg:p-6">
+      <div className="mx-auto grid min-h-[100dvh] max-w-[1510px] grid-cols-1 overflow-hidden border border-[#e4ddd2] bg-[#fcfaf6] shadow-[0_26px_70px_rgba(48,38,25,0.13)] sm:min-h-[calc(100dvh-1.5rem)] sm:rounded-[24px] lg:min-h-[calc(100dvh-3rem)] lg:grid-cols-[278px_minmax(0,1fr)] lg:rounded-[28px]">
+        <aside className="flex flex-col border-b border-[#e8e0d5] bg-[#f0ece4] p-4 lg:border-b-0 lg:border-r lg:p-5">
+          <div className="flex items-center gap-3 px-2 py-2">
+            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-[#1f3040] text-[#f7c85b] shadow-sm"><CircleDollarSign size={22} /></div>
+            <div><p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a746b]">Finance practice</p><p className="text-lg font-black tracking-tight">Ledger Room</p></div>
           </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-lg tracking-tight leading-tight text-white">CorpFinance</span>
-            <span className="text-xs text-slate-400 font-medium">Git Learning Environment</span>
-          </div>
-        </div>
 
-        <nav className="flex-1 px-4 py-4 space-y-1">
-          {navItems.map((item) => {
-            const isActive = location === item.href
-            return (
-              <Link key={item.href} href={item.href}>
-                <div
-                  className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors cursor-pointer",
-                    isActive 
-                      ? "bg-slate-800 text-white" 
-                      : "text-slate-300 hover:bg-slate-800 hover:text-white"
-                  )}
-                >
-                  <item.icon className={cn("w-4 h-4", isActive ? "text-primary" : "text-slate-400")} />
-                  {item.label}
-                </div>
+          <div className="mt-4 lg:mt-9">
+            <p className="hidden px-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#8d857a] lg:block">Workspace</p>
+            <nav className="mt-1 flex gap-2 overflow-x-auto pb-1 lg:mt-3 lg:block lg:space-y-1">
+              <Link href="/" className={`flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-bold transition lg:w-full ${location === '/' ? 'bg-[#1f3040] text-white shadow-sm' : 'text-[#665f57] hover:bg-white/60'}`}>
+                <Layers3 size={17} className={location === '/' ? 'text-[#f7c85b]' : ''} /> Review queue
               </Link>
-            )
-          })}
-        </nav>
-
-        <div className="p-4 m-4 rounded-md bg-slate-800/50 border border-slate-700">
-          <p className="text-xs text-slate-400 leading-relaxed">
-            <strong className="text-slate-200">Notice:</strong> This is a frontend-only practice environment. Data is synthetic and stored in localStorage.
-          </p>
-        </div>
-      </aside>
-
-      <main className="flex-1 flex flex-col overflow-hidden h-[100dvh]">
-        <div className="flex-1 overflow-auto p-4 md:p-8">
-          <div className="max-w-5xl mx-auto">
-            {children}
+              <a href={location === '/' ? '#policy' : './#policy'} className="flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold text-[#665f57] transition hover:bg-white/60 lg:w-full">
+                <ShieldCheck size={17} /> Policy checks
+              </a>
+              <Link href="/guide" className={`flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-bold transition lg:w-full ${location === '/guide' ? 'bg-[#1f3040] text-white shadow-sm' : 'text-[#665f57] hover:bg-white/60'}`}>
+                <BookOpen size={17} className={location === '/guide' ? 'text-[#f7c85b]' : ''} /> Git practice guide
+              </Link>
+            </nav>
           </div>
-        </div>
-      </main>
+
+          <div className="mt-auto hidden rounded-2xl border border-[#ddd5c9] bg-[#f9f6ef] p-4 lg:block">
+            <Sparkles size={18} className="text-[#d87935]" />
+            <p className="mt-3 text-sm font-bold leading-snug">Review before you record.</p>
+            <p className="mt-1 text-xs leading-relaxed text-[#716a62]">Synthetic data is saved locally. Browser edits are not Git edits.</p>
+          </div>
+        </aside>
+        <main className="flex min-w-0 flex-col">{children}</main>
+      </div>
     </div>
   )
 }
